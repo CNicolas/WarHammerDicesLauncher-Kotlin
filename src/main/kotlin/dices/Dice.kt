@@ -1,12 +1,7 @@
 package dices
 
-import java.util.*
+interface Dice {
+    val faces: List<Face>
 
-abstract class Dice : IDice {
-    private val facesCount: Int
-        get() = faces.size
-
-    override fun roll(): List<Face> = listOf(takeRandomFace())
-
-    fun takeRandomFace() = faces[Random().nextInt(facesCount)]
+    fun roll(): List<Face>
 }

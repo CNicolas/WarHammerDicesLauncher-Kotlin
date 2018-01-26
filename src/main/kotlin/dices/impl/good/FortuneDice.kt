@@ -1,10 +1,10 @@
 package dices.impl.good
 
-import dices.Dice
+import dices.AbstractDice
 import dices.Face
 import dices.Face.*
 
-class FortuneDice : Dice() {
+class FortuneDice : AbstractDice() {
     override val faces: List<Face> = listOf(
             SUCCESS,
             SUCCESS,

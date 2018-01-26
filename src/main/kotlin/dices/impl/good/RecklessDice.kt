@@ -17,4 +17,16 @@ class RecklessDice : Dice() {
             VOID,
             VOID
     )
+
+    override fun roll(): List<Face> {
+        val face = takeRandomFace()
+
+        return when (face) {
+            SUCCESS_SUCCESS -> listOf(SUCCESS, SUCCESS)
+            SUCCESS_BOON -> listOf(SUCCESS, BOON)
+            BOON_BOON -> listOf(BOON, BOON)
+            SUCCESS_EXHAUSTION -> listOf(SUCCESS, EXHAUSTION)
+            else -> listOf(face)
+        }
+    }
 }

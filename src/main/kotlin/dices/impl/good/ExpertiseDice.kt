@@ -13,4 +13,22 @@ class ExpertiseDice : Dice() {
             SIGMAR,
             VOID
     )
+
+    override fun roll(): List<Face> {
+        val face = takeRandomFace()
+
+        return when (face) {
+            SUCCESS_PLUS -> reroll(listOf(SUCCESS))
+            else -> listOf(face)
+        }
+    }
+
+    private fun reroll(currentFaces: List<Face>): List<Face> {
+        val face = takeRandomFace()
+
+        return when (face) {
+            SUCCESS_PLUS -> reroll(currentFaces + SUCCESS)
+            else -> currentFaces + face
+        }
+    }
 }

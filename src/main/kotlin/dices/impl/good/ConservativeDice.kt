@@ -17,4 +17,14 @@ class ConservativeDice : Dice() {
             SUCCESS_DELAY,
             VOID
     )
+
+    override fun roll(): List<Face> {
+        val face = takeRandomFace()
+
+        return when (face) {
+            SUCCESS_BOON -> listOf(SUCCESS, BOON)
+            SUCCESS_DELAY -> listOf(SUCCESS, DELAY)
+            else -> listOf(face)
+        }
+    }
 }

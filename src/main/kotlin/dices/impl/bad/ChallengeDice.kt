@@ -15,4 +15,14 @@ class ChallengeDice : Dice() {
             CHAOS,
             VOID
     )
+
+    override fun roll(): List<Face> {
+        val face = takeRandomFace()
+
+        return when (face) {
+            FAILURE_FAILURE -> listOf(FAILURE, FAILURE)
+            BANE_BANE -> listOf(BANE, BANE)
+            else -> listOf(face)
+        }
+    }
 }

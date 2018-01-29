@@ -13,7 +13,7 @@ class DiceTest {
         val dice = ConservativeDice()
         val allRandomFaces = mutableListOf<Face>()
 
-        (0..1000).forEach { allRandomFaces.add(dice.takeRandomFace()) }
+        (0 until 1000).forEach { allRandomFaces.add(dice.takeRandomFace()) }
 
         val resFaces = allRandomFaces.distinct()
                 .sorted()
@@ -27,7 +27,7 @@ class DiceTest {
         val dice = ExpertiseDice()
         val allRolls = mutableListOf(listOf<Face>())
 
-        (0..1000).forEach { allRolls.add(dice.roll()) }
+        (0 until 1000).forEach { allRolls.add(dice.roll()) }
 
         assertThat(allRolls.filter { it.size > 1 }.size).isGreaterThanOrEqualTo(1)
     }
@@ -37,7 +37,7 @@ class DiceTest {
         val dice = ConservativeDice()
         val allRolls = mutableListOf(listOf<Face>())
 
-        (0..1000).forEach { allRolls.add(dice.roll()) }
+        (0 until 1000).forEach { allRolls.add(dice.roll()) }
 
         assertThat(allRolls.filter { it.size == 2 }.size).isGreaterThanOrEqualTo(1)
     }
@@ -47,7 +47,7 @@ class DiceTest {
         val dice = RecklessDice()
         val allRolls = mutableListOf(listOf<Face>())
 
-        (0..1000).forEach { allRolls.add(dice.roll()) }
+        (0 until 1000).forEach { allRolls.add(dice.roll()) }
 
         assertThat(allRolls.filter { it.size == 2 }.size).isGreaterThanOrEqualTo(1)
     }

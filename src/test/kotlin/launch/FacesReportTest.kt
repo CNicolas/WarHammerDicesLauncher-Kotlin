@@ -28,7 +28,7 @@ class FacesReportTest {
     }
 
     @Test
-    fun should_add_2_simple_reports() {
+    fun should_merge_2_simple_reports() {
         val faces1 = listOf(SUCCESS)
         val faces2 = listOf(SUCCESS, SUCCESS)
         val report1 = facesToFacesReport(faces1)

@@ -3,11 +3,10 @@ package launch
 import dices.Face
 import dices.Face.*
 
-private val opposingFace: Map<Face, Face> = hashMapOf(
-        SUCCESS to FAILURE,
-        FAILURE to SUCCESS,
-        BOON to BANE,
-        BANE to BOON)
+fun launchHand(hand: Hand): LaunchResult {
+    val faces = simplifyFaces(hand.launch())
+    return LaunchResult(faces)
+}
 
 internal fun simplifyFaces(faces: List<Face>): List<Face> {
     val report = facesToFacesReport(faces)
@@ -15,7 +14,7 @@ internal fun simplifyFaces(faces: List<Face>): List<Face> {
     return facesReportToFaces(removeOpposites(report))
 }
 
-fun facesToFacesReport(faces: List<Face>): Map<Face, Int> {
+internal fun facesToFacesReport(faces: List<Face>): Map<Face, Int> {
     val report = hashMapOf<Face, Int>()
 
     faces.distinct()
@@ -24,11 +23,17 @@ fun facesToFacesReport(faces: List<Face>): Map<Face, Int> {
     return report
 }
 
-fun facesReportToFaces(facesReport: Map<Face, Int>): List<Face> {
+internal fun facesReportToFaces(facesReport: Map<Face, Int>): List<Face> {
     return facesReport.flatMap { entry ->
         (0 until entry.value).map { entry.key }
     }
 }
+
+private val opposingFace: Map<Face, Face> = hashMapOf(
+        SUCCESS to FAILURE,
+        FAILURE to SUCCESS,
+        BOON to BANE,
+        BANE to BOON)
 
 private fun removeOpposites(report: Map<Face, Int>): Map<Face, Int> {
     val mutableReport = HashMap(report)
@@ -36,10 +41,29 @@ private fun removeOpposites(report: Map<Face, Int>): Map<Face, Int> {
     mutableReport.forEach { face, faceCount ->
         run {
             if (faceCount > 0) {
-                adjustOpposingFaces(face, faceCount, mutableReport)
+                val opposite = opposingFace[face]
+                if (opposite != null) {
+                    when {
+                        mutableReport[opposite] == null -> {
+                        }
+                        faceCount == mutableReport[opposite] -> {
+                            mutableReport[face] = 0
+                            mutableReport[opposite] = 0
+                        }
+                        faceCount > mutableReport[opposite]!! -> {
+                            mutableReport[face] = report[face]!! - report[opposite]!!
+                            mutableReport[opposite] = 0
+                        }
+                        faceCount < mutableReport[opposite]!! -> {
+                            mutableReport[face] = 0
+                            mutableReport[opposite] = report[opposite]!! - report[face]!!
+                        }
+                    }
+                }
             }
         }
     }
+
     return mutableReport
 }
 

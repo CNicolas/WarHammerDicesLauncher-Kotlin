@@ -66,25 +66,3 @@ private fun removeOpposites(report: Map<Face, Int>): Map<Face, Int> {
 
     return mutableReport
 }
-
-private fun adjustOpposingFaces(face: Face, faceCount: Int, mutableReport: HashMap<Face, Int>) {
-    val opposite = opposingFace[face]
-    if (opposite != null) {
-        when {
-            mutableReport[opposite] == null -> {
-            }
-            faceCount == mutableReport[opposite] -> {
-                mutableReport[face] = 0
-                mutableReport[opposite] = 0
-            }
-            faceCount > mutableReport[opposite]!! -> {
-                mutableReport[face] = mutableReport[face]!! - mutableReport[opposite]!!
-                mutableReport[opposite] = 0
-            }
-            faceCount < mutableReport[opposite]!! -> {
-                mutableReport[face] = 0
-                mutableReport[opposite] = mutableReport[opposite]!! - mutableReport[face]!!
-            }
-        }
-    }
-}

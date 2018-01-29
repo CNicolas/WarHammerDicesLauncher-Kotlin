@@ -8,5 +8,5 @@ abstract class AbstractDice : Dice {
 
     override fun roll(): List<Face> = listOf(takeRandomFace())
 
-    fun takeRandomFace() = faces[Random().nextInt(facesCount)]
+    internal fun takeRandomFace() = faces[Random().nextInt(facesCount)]
 }

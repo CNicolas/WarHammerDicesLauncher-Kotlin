@@ -19,5 +19,5 @@ data class LaunchStatistics(val launchResults: List<LaunchResult>) {
     val totalExhaustion = totalResultReport[EXHAUSTION] ?: 0
     val totalChaos = totalResultReport[CHAOS] ?: 0
 
-    val averageSuccess = totalSuccess / launchCount
+    val averageSuccess: Double = totalSuccess.toDouble() / launchCount
 }

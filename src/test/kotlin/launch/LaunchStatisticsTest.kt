@@ -8,7 +8,7 @@ class LaunchStatisticsTest {
     @Test
     fun should_calculate_total_report_of_expertise_dices() {
         val launchCount = 10
-        val hand = Hand(characteristicDicesCount = 10, expertiseDicesCount = 5)
+        val hand = Hand(expertiseDicesCount = 5)
         val launchResults = mutableListOf<LaunchResult>()
 
         (0 until launchCount).forEach { launchResults.add(launchHand(hand)) }
@@ -20,6 +20,24 @@ class LaunchStatisticsTest {
         assertThat(statistics.launchCount).isEqualTo(launchCount)
         assertThat(statistics.successfulLaunchCount).isLessThanOrEqualTo(launchCount)
         assertThat(statistics.totalFailure).isZero()
-        assertThat(statistics.averageSuccess).isGreaterThanOrEqualTo(1)
+        assertThat(statistics.averageSuccess).isGreaterThanOrEqualTo(1.0)
+    }
+
+    @Test
+    fun should_calculate_statistics() {
+        val launchCount = 100
+        val hand = Hand(characteristicDicesCount = 3, fortuneDicesCount = 1, challengeDicesCount = 2, misfortuneDicesCount = 1)
+        val launchResults = mutableListOf<LaunchResult>()
+
+        (0 until launchCount).forEach { launchResults.add(launchHand(hand)) }
+
+        val statistics = LaunchStatistics(launchResults)
+
+        println(statistics.totalResultReport)
+
+        assertThat(statistics.launchCount).isEqualTo(launchCount)
+        assertThat(statistics.successfulLaunchCount).isLessThanOrEqualTo(launchCount)
+        assertThat(statistics.totalSigmar).isZero()
+        assertThat(statistics.averageSuccess).isLessThanOrEqualTo(1.0)
     }
 }

@@ -40,4 +40,21 @@ class LaunchStatisticsTest {
         assertThat(statistics.totalSigmar).isZero()
         assertThat(statistics.averageSuccess).isLessThanOrEqualTo(1.0)
     }
+
+    @Test
+    fun should_get_coherent_average_result() {
+        val launchCount = 1000
+        val hand = Hand(characteristicDicesCount = 3, fortuneDicesCount = 1, challengeDicesCount = 1)
+        val launchResults = mutableListOf<LaunchResult>()
+
+        (0 until launchCount).forEach { launchResults.add(launchHand(hand)) }
+
+        val statistics = LaunchStatistics(launchResults)
+
+        println(statistics.totalResultReport)
+        println(statistics.averageResult)
+
+        assertThat(statistics.launchCount).isEqualTo(launchCount)
+        assertThat(statistics.successfulLaunchCount).isLessThanOrEqualTo(launchCount)
+    }
 }

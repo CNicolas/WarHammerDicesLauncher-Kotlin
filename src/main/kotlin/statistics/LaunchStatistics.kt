@@ -1,10 +1,11 @@
 package statistics
 
 import dices.Face.*
+import launch.FacesReport
 import launch.LaunchResult
 import launch.mergeReports
 
-data class LaunchStatistics(val launchResults: List<LaunchResult>) {
+data class LaunchStatistics(private val launchResults: List<LaunchResult>) {
     val launchCount = launchResults.size
     val successfulLaunchCount = launchResults.count { it.isSuccessful }
     val totalResultReport = mergeReports(launchResults.map { it.report })
@@ -28,4 +29,16 @@ data class LaunchStatistics(val launchResults: List<LaunchResult>) {
     val averageBane: Double = totalBane.toDouble() / launchCount
     val averageExhaustion: Double = totalExhaustion.toDouble() / launchCount
     val averageChaos: Double = totalChaos.toDouble() / launchCount
+
+    val averageResult: FacesReport = hashMapOf(
+            // VOID to Math.round(averageVoid).toInt(),
+            SUCCESS to Math.round(averageSuccess).toInt(),
+            BOON to Math.round(averageBoon).toInt(),
+            DELAY to Math.round(averageDelay).toInt(),
+            SIGMAR to Math.round(averageSigmar).toInt(),
+            FAILURE to Math.round(averageFailure).toInt(),
+            BANE to Math.round(averageBane).toInt(),
+            EXHAUSTION to Math.round(averageExhaustion).toInt(),
+            CHAOS to Math.round(averageChaos).toInt()
+    ).filterValues { it > 0 }
 }

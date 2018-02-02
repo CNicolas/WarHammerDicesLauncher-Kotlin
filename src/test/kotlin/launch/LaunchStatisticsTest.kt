@@ -1,5 +1,6 @@
 package launch
 
+import hand.Hand
 import org.assertj.core.api.Assertions.assertThat
 import org.testng.annotations.Test
 import statistics.LaunchStatistics

@@ -2,6 +2,7 @@ package launch
 
 import dices.Face
 import dices.Face.*
+import hand.Hand
 
 fun launchHand(hand: Hand): LaunchResult {
     val faces = simplifyFaces(hand.launch())

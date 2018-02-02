@@ -1,6 +1,7 @@
 package launch
 
 import dices.Face.*
+import hand.Hand
 import org.assertj.core.api.Assertions.assertThat
 import org.testng.annotations.Test
 

@@ -3,6 +3,15 @@ package warhammer.dicelauncher.launch
 import warhammer.dicelauncher.dices.Face
 import warhammer.dicelauncher.dices.Face.*
 import warhammer.dicelauncher.hand.Hand
+import warhammer.dicelauncher.statistics.LaunchStatistics
+
+fun launchForStatistics(hand: Hand, count: Int): LaunchStatistics {
+    val launchResults = mutableListOf<LaunchResult>()
+
+    (0 until count).forEach { launchResults.add(launchHand(hand)) }
+
+    return LaunchStatistics(launchResults)
+}
 
 fun launchHand(hand: Hand): LaunchResult {
     val faces = simplifyFaces(hand.launch())

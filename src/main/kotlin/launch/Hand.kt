@@ -6,7 +6,8 @@ import dices.impl.bad.ChallengeDice
 import dices.impl.bad.MisfortuneDice
 import dices.impl.good.*
 
-class Hand(val characteristicDicesCount: Int = 0,
+class Hand(val name:String,
+           val characteristicDicesCount: Int = 0,
            val expertiseDicesCount: Int = 0,
            val fortuneDicesCount: Int = 0,
            val conservativeDicesCount: Int = 0,

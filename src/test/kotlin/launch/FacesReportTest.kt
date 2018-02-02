@@ -28,19 +28,16 @@ class FacesReportTest {
     }
 
     @Test
-    fun should_merge_2_simple_reports() {
-        val faces1 = listOf(SUCCESS)
-        val faces2 = listOf(SUCCESS, SUCCESS)
-        val report1 = facesToFacesReport(faces1)
-        val report2 = facesToFacesReport(faces2)
+    fun should_merge_simple_report_alone() {
+        val faces = listOf(SUCCESS)
+        val report = facesToFacesReport(faces)
 
-        assertThat(report1.keys.size).isEqualTo(1)
-        assertThat(report1[SUCCESS]).isEqualTo(1)
-        assertThat(report2.keys.size).isEqualTo(1)
-        assertThat(report2[SUCCESS]).isEqualTo(2)
-
-        val report = mergeReports(report1, report2)
         assertThat(report.keys.size).isEqualTo(1)
-        assertThat(report[SUCCESS]).isEqualTo(3)
+        assertThat(report[SUCCESS]).isEqualTo(1)
+
+        val mergedReport = mergeReports(listOf(report))
+        assertThat(mergedReport.keys.size).isEqualTo(1)
+        assertThat(mergedReport[SUCCESS]).isEqualTo(1)
+        assertThat(mergedReport).isEqualToComparingFieldByField(report)
     }
 }

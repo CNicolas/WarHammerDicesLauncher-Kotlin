@@ -1,9 +1,9 @@
 package warhammer.dicelauncher.launch
 
-import warhammer.dicelauncher.dices.Face.*
-import warhammer.dicelauncher.hand.Hand
 import org.assertj.core.api.Assertions.assertThat
 import org.testng.annotations.Test
+import warhammer.database.entities.HandEntity
+import warhammer.dicelauncher.dices.Face.*
 
 class LaunchHelpersTest {
     @Test
@@ -21,7 +21,7 @@ class LaunchHelpersTest {
 
     @Test
     fun should_launch_hand_and_be_successful() {
-        val hand = Hand("SampleHand", characteristicDicesCount = 10)
+        val hand = HandEntity("SampleHand", characteristicDicesCount = 10)
         val launchResult = launchHand(hand)
 
         assertThat(launchResult.isSuccessful).isTrue()
@@ -31,7 +31,7 @@ class LaunchHelpersTest {
 
     @Test
     fun should_launch_hand_and_be_unsuccessful() {
-        val hand = Hand("SampleHand", challengeDicesCount = 10)
+        val hand = HandEntity("SampleHand", challengeDicesCount = 10)
         val launchResult = launchHand(hand)
 
         assertThat(launchResult.isSuccessful).isFalse()

@@ -9,7 +9,7 @@ import warhammer.dicelauncher.launch.launchHand
 class HandTest {
     @Test
     fun should_launch_simple_hand() {
-        val hand = Hand("SampleHand", characteristicDicesCount = 2, fortuneDicesCount = 1)
+        val hand = Hand(name = "SampleHand", characteristicDicesCount = 2, fortuneDicesCount = 1)
         val launch = launchHand(hand)
 
         assertThat(launch.faces.size).isEqualTo(3)
@@ -19,14 +19,14 @@ class HandTest {
 
     @Test
     fun should_launch_rank_3_hand() {
-        val hand = Hand("SampleHand", fortuneDicesCount = 2, characteristicDicesCount = 5, expertiseDicesCount = 2, challengeDicesCount = 1, misfortuneDicesCount = 2)
+        val hand = Hand(name = "SampleHand", fortuneDicesCount = 2, characteristicDicesCount = 5, expertiseDicesCount = 2, challengeDicesCount = 1, misfortuneDicesCount = 2)
 
         println(launchHand(hand))
     }
 
     @Test
     fun should_use_hand_and_database() {
-        val hand = Hand("SampleHand", characteristicDicesCount = 2, misfortuneDicesCount = 1)
+        val hand = Hand(name = "SampleHand", characteristicDicesCount = 2, misfortuneDicesCount = 1)
 
         val handsDatabaseService = HandsDatabaseService(databaseUrl = "jdbc:sqlite:testSqlite:?mode=memory&cache=shared", driver = "org.sqlite.JDBC")
         handsDatabaseService.deleteAll()

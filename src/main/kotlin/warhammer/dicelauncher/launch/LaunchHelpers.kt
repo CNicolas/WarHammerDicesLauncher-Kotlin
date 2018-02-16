@@ -37,13 +37,13 @@ private fun Hand.launch(): List<Face> {
 private fun createPool(Hand: Hand): List<Dice> {
     val pool = mutableListOf<Dice>()
 
-    (0 until Hand.characteristicDicesCount!!).forEach { pool.add(CharacteristicDice()) }
-    (0 until Hand.expertiseDicesCount!!).forEach { pool.add(ExpertiseDice()) }
-    (0 until Hand.fortuneDicesCount!!).forEach { pool.add(FortuneDice()) }
-    (0 until Hand.conservativeDicesCount!!).forEach { pool.add(ConservativeDice()) }
-    (0 until Hand.recklessDicesCount!!).forEach { pool.add(RecklessDice()) }
-    (0 until Hand.challengeDicesCount!!).forEach { pool.add(ChallengeDice()) }
-    (0 until Hand.misfortuneDicesCount!!).forEach { pool.add(MisfortuneDice()) }
+    (0 until Hand.characteristicDicesCount).forEach { pool.add(CharacteristicDice()) }
+    (0 until Hand.expertiseDicesCount).forEach { pool.add(ExpertiseDice()) }
+    (0 until Hand.fortuneDicesCount).forEach { pool.add(FortuneDice()) }
+    (0 until Hand.conservativeDicesCount).forEach { pool.add(ConservativeDice()) }
+    (0 until Hand.recklessDicesCount).forEach { pool.add(RecklessDice()) }
+    (0 until Hand.challengeDicesCount).forEach { pool.add(ChallengeDice()) }
+    (0 until Hand.misfortuneDicesCount).forEach { pool.add(MisfortuneDice()) }
 
     return pool.toList()
 }

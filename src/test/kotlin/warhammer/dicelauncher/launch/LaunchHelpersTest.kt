@@ -22,7 +22,7 @@ class LaunchHelpersTest {
     @Test
     fun should_launch_hand_and_be_successful() {
         val hand = Hand(name = "SampleHand", characteristicDicesCount = 10)
-        val launchResult = launchHand(hand)
+        val launchResult = hand.launch()
 
         assertThat(launchResult.isSuccessful).isTrue()
 

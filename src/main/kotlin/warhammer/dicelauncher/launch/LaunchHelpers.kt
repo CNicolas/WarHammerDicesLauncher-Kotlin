@@ -9,12 +9,15 @@ import warhammer.dicelauncher.dices.impl.bad.MisfortuneDice
 import warhammer.dicelauncher.dices.impl.good.*
 import warhammer.dicelauncher.statistics.LaunchStatistics
 
+fun Hand.launch(): LaunchResult = launchHand(this)
+fun Hand.launchForStatistics(count: Int): LaunchStatistics = launchHandForStatistics(this, count)
+
 fun launchHand(Hand: Hand): LaunchResult {
-    val faces = simplifyFaces(Hand.launch())
+    val faces = simplifyFaces(Hand.launchForFaces())
     return LaunchResult(faces)
 }
 
-fun launchForStatistics(Hand: Hand, count: Int): LaunchStatistics {
+fun launchHandForStatistics(Hand: Hand, count: Int): LaunchStatistics {
     val launchResults = mutableListOf<LaunchResult>()
 
     (0 until count).forEach { launchResults.add(launchHand(Hand)) }
@@ -28,7 +31,7 @@ internal fun simplifyFaces(faces: List<Face>): List<Face> {
     return facesReportToFaces(removeOpposites(report))
 }
 
-private fun Hand.launch(): List<Face> {
+private fun Hand.launchForFaces(): List<Face> {
     val pool = createPool(this)
 
     return pool.flatMap { it.roll() }

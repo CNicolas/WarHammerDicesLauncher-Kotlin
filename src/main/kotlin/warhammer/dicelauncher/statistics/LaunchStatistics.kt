@@ -9,6 +9,7 @@ data class LaunchStatistics(private val launchResults: List<LaunchResult>) {
     val launchCount = launchResults.size
     val successfulLaunchCount = launchResults.count { it.isSuccessful }
     val totalResultReport = mergeReports(launchResults.map { it.report })
+    val successfulPercentage = (100 * successfulLaunchCount) / launchCount.toDouble()
 
     val totalVoid = totalResultReport[VOID] ?: 0
     val totalSuccess = totalResultReport[SUCCESS] ?: 0

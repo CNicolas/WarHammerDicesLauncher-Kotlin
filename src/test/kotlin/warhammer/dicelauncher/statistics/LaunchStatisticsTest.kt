@@ -47,5 +47,6 @@ class LaunchStatisticsTest {
 
         assertThat(statistics.launchCount).isEqualTo(launchCount)
         assertThat(statistics.successfulLaunchCount).isLessThanOrEqualTo(launchCount)
+        assertThat(statistics.successfulPercentage).isBetween(10.0, 100.0)
     }
 }

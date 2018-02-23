@@ -1,6 +1,6 @@
 package warhammer.dicelauncher.launch
 
-import warhammer.database.entities.Hand
+import warhammer.database.entities.hand.Hand
 import warhammer.dicelauncher.dices.Dice
 import warhammer.dicelauncher.dices.Face
 import warhammer.dicelauncher.dices.Face.*

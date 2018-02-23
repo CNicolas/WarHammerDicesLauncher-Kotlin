@@ -2,7 +2,7 @@ package warhammer.dicelauncher.statistics
 
 import org.assertj.core.api.Assertions.assertThat
 import org.testng.annotations.Test
-import warhammer.database.entities.Hand
+import warhammer.database.entities.hand.Hand
 import warhammer.dicelauncher.launch.launchForStatistics
 import warhammer.dicelauncher.launch.launchHandForStatistics
 
